@@ -179,3 +179,17 @@ git switch main
 - Merge $branch_name to current(main) branch
 git merge $branch_name
 ```
+
+#### Minikube
+
+```cmd
+- Download and install minikube, Make sure you have hyperv
+minikube start --driver=hyperv 
+
+- Minimal Cluster resources
+kubectl get all
+
+- Minimal Cluster resources in All namespaces
+kubectl get all -A
+
+```

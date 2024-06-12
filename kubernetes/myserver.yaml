@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: myserver
+  annotations:
+    environment: qa
+  name: myserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myserver
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: myserver
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}

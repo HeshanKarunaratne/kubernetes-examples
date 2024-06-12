@@ -184,7 +184,7 @@ git merge $branch_name
 
 ```cmd
 - Download and install minikube, Make sure you have hyperv
-minikube start --driver=hyperv 
+minikube start --driver=hyperv
 
 - Minimal Cluster resources
 kubectl get all
@@ -192,4 +192,80 @@ kubectl get all
 - Minimal Cluster resources in All namespaces
 kubectl get all -A
 
+- Run an application
+kubectl create deploy myapp --image=myimage --replicas=3
+
+- Generate yaml manifest file
+kubectl create deploy myapp --image=myimage --replicas=3 --dry-run=client -o yaml > myapp.yaml
+
+- Push yaml file to git repository(recommended command is 'apply' or 'create')
+kubectl apply -f myapp.yaml
+
+- To preview modification
+kubectl diff -f myapp.yaml
+
+- Create nginx container and this is not a declarative way
+kubectl create deploy myserver --image=nginx
+
+- Delete deployment
+kubectl delete deploy myserver
+
+- Create deployment
+kubectl create deploy myserver --image=nginx --dry-run=client -o yaml > myserver.yaml
+
+- Apply deployment
+kubectl apply -f myserver.yaml
+
+- Check deployment
+kubectl get deploy myserver -o yaml | less
+
+- Delete deployment
+kubectl delete deploy myserver
+
+- Retreive resources using selector
+kubectl get all --selector app=myserver
+
+- Port forwarding
+kubectl port-forward myserver-558ccddd4c-bmjdt 8080:80
 ```
+
+#### Kubernetes Resources
+
+##### Pods
+
+- One or more containers that run the application
+
+##### Deployment
+
+- Used to run a scalable application
+
+##### Volumes
+
+- Represents storage, either as a part of the pod definition or as its resource
+
+##### Service
+
+- A Policy that provides access to the application pods
+
+##### Jobs
+
+- Tasks that run as a pod in kubrenetes cluster
+
+##### CronJobs
+
+- Used to run jobs on a specific schedule
+
+#### Services
+
+##### ClusterIP
+
+- The default type and provides internal access only
+
+##### NodePort
+
+- Allocates a specific node port which needs to be opened on the firewall
+
+##### LoadBalancer
+
+- Only implemented in public cloud
+

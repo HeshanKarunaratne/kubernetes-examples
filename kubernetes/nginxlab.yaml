@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: "2024-06-12T15:53:08Z"
+  creationTimestamp: "2024-06-13T15:19:55Z"
   generation: 1
   labels:
-    app: nginxsvc
-  name: nginxsvc
+    app: nginxlab
+  name: nginxlab
   namespace: default
-  resourceVersion: "47530"
-  uid: dc81bf40-7769-42b5-a26c-0aacf2068bcc
+  resourceVersion: "58643"
+  uid: 763bea95-b003-401d-88ab-a0a1c358d45c
 spec:
   progressDeadlineSeconds: 600
-  replicas: 3
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: nginxsvc
+      app: nginxlab
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -25,7 +25,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: nginxsvc
+        app: nginxlab
     spec:
       containers:
       - image: nginx

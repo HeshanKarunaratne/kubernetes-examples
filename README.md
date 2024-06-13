@@ -227,6 +227,35 @@ kubectl get all --selector app=myserver
 
 - Port forwarding
 kubectl port-forward myserver-558ccddd4c-bmjdt 8080:80
+
+- Exposing a service
+kubectl expose deploy nginxsvc --port=80
+minikube ssh
+curl $CLUSTER-IP
+
+- Edit service
+kubectl edit svc nginxsvc
+
+- Enable ingress in minikube
+minikube addons list
+minikube addons enable ingress
+
+- Describe ingress
+kubectl describe pods -n ingress-nginx
+
+- Create ingress
+kubectl create ingress nginxsvc-ingress --rule="/=nginxsvc:80"
+
+- Show created ingress
+kubectl get ingress
+
+- Port forwarding
+kubectl port-forward svc/nginxsvc 8888:80
+
+- Create volume from yaml file which was already there
+kubectl create -f morevolumes.yaml
+
+- Get all the pods
 ```
 
 #### Kubernetes Resources
@@ -269,3 +298,15 @@ kubectl port-forward myserver-558ccddd4c-bmjdt 8080:80
 
 - Only implemented in public cloud
 
+Exercise: Exposing application
+
+```cmd
+kubectl create deploy nginxlab --image=nginx
+kubectl expose deploy nginxlab --port=80
+kubectl edit svc nginxlab
+curl $(minikube ip):$NodePort
+kubectl delete svc nginxlab
+kubectl delete deploy nginxlab
+kubectl get svc
+kubectl get deploy
+```

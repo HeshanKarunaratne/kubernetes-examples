@@ -256,6 +256,25 @@ kubectl port-forward svc/nginxsvc 8888:80
 kubectl create -f morevolumes.yaml
 
 - Get all the pods
+kubectl get pods
+
+- Describe a pod
+kubectl describe pod morevol
+
+- Create Persistent Volume using yaml
+kubectl create -f pv.yaml
+
+- Describe volume
+kubectl describe pv $volume_name
+
+- Create Persistence Volume Claim using yaml
+kubectl create -f pvc.yaml
+
+- Get all PVC
+kubectl get pvc
+
+- To describe a specific property
+kubectl explain pods.spec.volumes.hostPath | less
 ```
 
 #### Kubernetes Resources
@@ -309,4 +328,15 @@ kubectl delete svc nginxlab
 kubectl delete deploy nginxlab
 kubectl get svc
 kubectl get deploy
+```
+
+Exercise: Configuring Storage
+
+```cmd
+vim morevolumes.yaml
+kubectl create -f morevolumes.yaml
+kubectl exec -it labExercise -c centos1 -- touch /centos1/hostPath.txt
+minikube ssh
+cd /myfiles/
+ls
 ```

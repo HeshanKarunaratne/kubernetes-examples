@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata: 
-  name: morevol
+name: labExercise
 spec:
   containers:
   - name: centos1
@@ -22,4 +22,5 @@ spec:
         name: test
   volumes: 
     - name: test
-      emptyDir: {}
+      hostPath: 
+        path: /myfiles
